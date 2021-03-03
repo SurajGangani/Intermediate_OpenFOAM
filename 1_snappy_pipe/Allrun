@@ -3,6 +3,7 @@ cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
 
-blockMesh
+blockMesh > blockMesh.log
+snappyHexMesh -overwrite > snappyhexMesh.log
 icoFoam
-touch couette_flow.foam
+touch 1_snappy_pipe.foam
