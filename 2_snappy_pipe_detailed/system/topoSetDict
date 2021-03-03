@@ -1,0 +1,145 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    // creating cylinder with faces (hollow cylinder), from patch of cylinder boundary
+    {
+        name    cylinderFace;
+        type    faceSet;
+        action  new;
+        source  patchToFace;
+        sourceInfo
+	{
+	    patch   cylinder;	
+	}
+    }
+
+    // take portion of cylinderFace using box
+    {
+        name    bottom_patch_negative;
+        type    faceSet;
+        action  new;
+        source  boxToFace;
+        sourceInfo
+        {
+            box   (-0.6 -0.6 0.01) (0.6 0.6 41);
+        }    
+    }
+
+    // take portion of cylinderFace using box
+    {
+        name    top_patch_negative;
+        type    faceSet;
+        action  new;
+        source  boxToFace;
+        sourceInfo
+        {
+            box   (-0.6 -0.6 -1) (0.6 0.6 39.99);
+        }
+    }
+
+
+
+    // GET bottom_patch FROM cylinderFace IN TWO STEPS
+    // STEP:1 MAKE NEW FACESET NAMED bottom_patch SAME AS cylinderFace (COPY)
+    // STEP:2 DELETE bottom_patch_negative FROM bottom_patch
+    {
+        name    bottom_patch;
+        type    faceSet;
+        action  new;		// new
+        source  faceToFace;
+        sourceInfo
+        {
+            set   cylinderFace;
+        }
+    }
+    {
+        name    bottom_patch;
+        type    faceSet;
+        action  delete;		// delete
+        source  faceToFace;
+        sourceInfo
+        {
+            set   bottom_patch_negative;
+        }
+    }
+
+
+    // GET top_patch FROM cylinderFace IN TWO STEPS
+    // STEP:1 MAKE NEW FACESET NAMED top_patch SAME AS cylinderFace (COPY)
+    // STEP:2 DELETE top_patch_negative FROM top_patch
+    {
+        name    top_patch;
+        type    faceSet;
+        action  new;            // new
+        source  faceToFace;
+        sourceInfo
+        {
+            set   cylinderFace;
+        }
+    }
+    {
+        name    top_patch;
+        type    faceSet;
+        action  delete;         // delete
+        source  faceToFace;
+        sourceInfo
+        {
+            set   top_patch_negative;
+        }
+    }
+
+
+    // GET wall_patch FROM cylinderFace IN THREE STEPS
+    // STEP:1 MAKE NEW FACESET NAMED wall_patch SAME AS cylinderFace (COPY)
+    // STEP:2 DELETE bottom_patch FROM wall_patch
+    // STEP:3 DELETE top_patch FROM wall_patch
+    {
+        name    wall_patch;
+        type    faceSet;
+        action  new;            // new
+        source  faceToFace;
+        sourceInfo
+        {
+            set   cylinderFace;
+        }
+    }
+    {
+        name    wall_patch;
+        type    faceSet;
+        action  delete;         // delete
+        source  faceToFace;
+        sourceInfo
+        {
+            set   bottom_patch;
+        }
+    }
+    {
+        name    wall_patch;
+        type    faceSet;
+        action  delete;         // delete
+        source  faceToFace;
+        sourceInfo
+        {
+            set   top_patch;
+        }
+    }
+
+);
+
+// ************************************************************************* //
