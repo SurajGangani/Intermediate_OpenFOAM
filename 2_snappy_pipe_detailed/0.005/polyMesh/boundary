@@ -15,44 +15,26 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-6
+3
 (
-    movingWall
+    top_patch
     {
         type            patch;
-        nFaces          0;
+        nFaces          9880;
         startFace       2055164;
     }
-    leftSide
+    bottom_patch
     {
         type            patch;
-        nFaces          0;
-        startFace       2055164;
+        nFaces          9880;
+        startFace       2065044;
     }
-    rightSide
-    {
-        type            patch;
-        nFaces          0;
-        startFace       2055164;
-    }
-    fixedWall
-    {
-        type            patch;
-        nFaces          0;
-        startFace       2055164;
-    }
-    frontAndBack
-    {
-        type            patch;
-        nFaces          0;
-        startFace       2055164;
-    }
-    cylinder
+    wall_patch
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          271040;
-        startFace       2055164;
+        nFaces          251280;
+        startFace       2074924;
     }
 )
 
