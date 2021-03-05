@@ -34,6 +34,21 @@ geometry
         type triSurfaceMesh;
         name cylinder;
     }
+    
+    top_patch_box
+    {
+        type box;
+        min (-1 -1 -0.5);
+	max (1 1 0.5);
+    }
+
+    bottom_patch_box
+    {
+        type box;
+        min (-1 -1 39.5);
+        max (1 1 40.5);
+    }
+
 }
 
 
@@ -137,6 +152,18 @@ castellatedMeshControls
 
     refinementRegions
     {
+	top_patch_box
+	{
+	    mode inside;
+	    levels ((2 3));
+	}
+
+        bottom_patch_box
+        {
+            mode inside;
+            levels ((2 3));
+        }
+
     }
 
 

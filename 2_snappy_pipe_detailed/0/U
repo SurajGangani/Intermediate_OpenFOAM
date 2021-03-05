@@ -16,35 +16,26 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 0 0);
+internalField   uniform (0 0 0.0001);
 
 boundaryField
 {
-    movingWall
-    {
-        type            fixedValue;
-        value           uniform (1 0 0);
-    }
-
-    leftSide
+    top_patch
     {
         type            zeroGradient;
     }
 
-    rightSide
-    {
-        type            zeroGradient;
-    }
-
-    fixedWall
+    wall_patch
     {
         type            noSlip;
     }
 
-    frontAndBack
+    bottom_patch
     {
-        type            empty;
+        type            fixedValue;
+        value           uniform (0 0 0.0001);
     }
+
 }
 
 // ************************************************************************* //
