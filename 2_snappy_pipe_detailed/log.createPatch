@@ -1,0 +1,60 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _f3950763fe-20191219 OPENFOAM=1912
+Arch   : "LSB;label=32;scalar=64"
+Exec   : createPatch -overwrite
+Date   : Mar 06 2021
+Time   : 19:30:49
+Host   : DESKTOP-2ORJ9TT
+PID    : 900
+I/O    : uncollated
+Case   : /home/suraj/OpenFoam-v1912/SrjOpenFoamTutorials/Intermediate_OpenFOAM/2_snappy_pipe_detailed
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Reading "system/createPatchDict"
+
+Adding new patch top_patch as patch 1 from 
+{
+    type            patch;
+}
+
+Adding new patch bottom_patch as patch 2 from 
+{
+    type            patch;
+}
+
+Adding new patch wall_patch as patch 3 from 
+{
+    type            wall;
+}
+
+
+Read 9880 faces from faceSet top_patch
+Read 9880 faces from faceSet bottom_patch
+Read 251280 faces from faceSet wall_patch
+
+Doing topology modification to order faces.
+
+Not synchronising points.
+
+Removing patches with no faces in them.
+
+Removing zero-sized patch cylinder type wall at position 0
+Removing patches.
+Writing repatched mesh to 0
+
+End
+
