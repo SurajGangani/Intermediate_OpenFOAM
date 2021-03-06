@@ -20,9 +20,10 @@ internalField   uniform 0;
 
 boundaryField
 {
-    top_patch
+    top_patch		//outlet for our case
     {
-        type            zeroGradient;
+        type            fixedValue;
+	value		uniform 0;
     }
 
     wall_patch
@@ -30,7 +31,7 @@ boundaryField
         type            zeroGradient;
     }
 
-    bottom_patch
+    bottom_patch	// inlet for our case
     {
         type            zeroGradient;
     }

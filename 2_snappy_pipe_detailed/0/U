@@ -20,7 +20,7 @@ internalField   uniform (0 0 0.0001);
 
 boundaryField
 {
-    top_patch
+    top_patch  		// outlet for our case
     {
         type            zeroGradient;
     }
@@ -30,7 +30,7 @@ boundaryField
         type            noSlip;
     }
 
-    bottom_patch
+    bottom_patch 	 // inlet for our case
     {
         type            fixedValue;
         value           uniform (0 0 0.0001);
